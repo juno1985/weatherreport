@@ -7,18 +7,20 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.juno.weatherreport.service.UserServiceInter;
+import com.juno.weatherreport.service.RemoteWeatherDataService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {WeatherreportApplication.class, DataSourceAutoConfiguration.class})
 
 class WeatherreportApplicationTests {
 
+
 	@Autowired
-	private UserServiceInter userService;
+	private RemoteWeatherDataService remoteWeatherDataService;
+	
 	
 	@Test
-	public void testUser() {
-		userService.Sel(1);
+	public void testGetWeatherResponseByCityName() {
+		remoteWeatherDataService.getForcastDataByCityName("Dalian");
 	}
 
 }

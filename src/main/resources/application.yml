@@ -8,7 +8,7 @@ spring:
     username:
     password:
     schema: classpath:db/schema.sql
-#    data: classpath:db/data.sql
+    data: classpath:db/data.sql
   h2:
     console:
       settings:
