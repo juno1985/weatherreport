@@ -11,4 +11,6 @@ import com.juno.weatherreport.model.ForcastWeatherWrapper;
 public interface ForcastWeatherMapper {
 
 	City getCityByCityName(@Param("cityName")String cityName);
+	
+	ForcastWeatherWrapper getForcastWeatherByCityId(@Param("id")String id);
 }

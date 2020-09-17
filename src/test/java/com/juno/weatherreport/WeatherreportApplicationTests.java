@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.juno.weatherreport.mapper.ForcastWeatherMapper;
 import com.juno.weatherreport.model.City;
 import com.juno.weatherreport.model.ForcastWeatherResponse;
+import com.juno.weatherreport.model.ForcastWeatherWrapper;
 import com.juno.weatherreport.model.ListDetails;
 import com.juno.weatherreport.service.RemoteWeatherDataService;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -46,7 +47,15 @@ class WeatherreportApplicationTests {
 		City city = forcastWeatherMapper.getCityByCityName("Dalian");
 		System.out.println(city);
 		
+		
+		
 	}
 	
+	@Test
+	public void testGetForcastWeatherByCityId() {
+		ForcastWeatherWrapper wrapper = forcastWeatherMapper.getForcastWeatherByCityId("1");
+		
+		System.out.println(wrapper.getList().toString());
+	}
 
 }

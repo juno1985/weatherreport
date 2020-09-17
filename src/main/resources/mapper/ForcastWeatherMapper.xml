@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.juno.weatherreport.mapper.ForcastWeatherMapper">
+<mapper
+	namespace="com.juno.weatherreport.mapper.ForcastWeatherMapper">
 
-    <resultMap id="CityModel" type="com.juno.weatherreport.model.City">
-        <result column="id" jdbcType="VARCHAR" property="id" />
-        <result column="city_name" jdbcType="VARCHAR" property="name" />
-        <result column="city_country" jdbcType="VARCHAR" property="country" />
-        <result column="city_timezone" jdbcType="VARCHAR" property="timezone" />
-    </resultMap>
+	<resultMap id="CityModel"
+		type="com.juno.weatherreport.model.City">
+		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="city_name" jdbcType="VARCHAR" property="name" />
+		<result column="city_country" jdbcType="VARCHAR"
+			property="country" />
+		<result column="city_timezone" jdbcType="VARCHAR"
+			property="timezone" />
+	</resultMap>
 
-    <select id="getCityByCityName" resultMap="CityModel">
-        select id, city_name, city_country, city_timezone from city where city_name = #{cityName};
-    </select>
+	<resultMap id="ForcastWeatherModel"
+		type="com.juno.weatherreport.model.ForcastWeatherWrapper">
+		<result column="id" jdbcType="VARCHAR" property="city.id" />
+		<result column="city_name" jdbcType="VARCHAR"
+			property="city.name" />
+		<result column="city_country" jdbcType="VARCHAR"
+			property="city.country" />
+		<result column="city_timezone" jdbcType="VARCHAR"
+			property="city.timezone" />
+		<collection property="list"
+			ofType="com.juno.weatherreport.model.ForcastData">
+			<!-- 定义这个集合中元素的封装规则 -->
+			<result column="TEMP" jdbcType="FLOAT" property="temp" />
+			<result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+			<result column="FEELS_LIKE" jdbcType="FLOAT" property="feels_like" />
+			<result column="TEMP_MIN" jdbcType="FLOAT" property="temp_min" />
+			<result column="TEMP_MAX" jdbcType="FLOAT" property="temp_max" />
+		</collection>
+	</resultMap>
+
+	<select id="getCityByCityName" resultMap="CityModel">
+		select id, city_name,
+		city_country, city_timezone from city where city_name
+		= #{cityName};
+	</select>
+
+
+	<select id="getForcastWeatherByCityId"
+		resultMap="ForcastWeatherModel">
+		select c.ID ,c.CITY_NAME , c.CITY_COUNTRY ,c.CITY_TIMEZONE,
+		f.TEMP
+		,f.DESCRIPTION ,f.FEELS_LIKE ,f.TEMP_MIN ,f.TEMP_MAX
+		from CITY c
+		left join FORCASTFIVEDAYSDATA f
+		on c.id = f.cid
+		where c.ID = #{id}
+	</select>
 
 </mapper>

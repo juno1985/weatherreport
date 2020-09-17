@@ -37,6 +37,11 @@ public class ForcastData {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@Override
+	public String toString() {
+		return "ForcastData [temp=" + temp + ", feels_like=" + feels_like + ", temp_min=" + temp_min + ", temp_max="
+				+ temp_max + ", description=" + description + "]";
+	}
 	
 	
 }
