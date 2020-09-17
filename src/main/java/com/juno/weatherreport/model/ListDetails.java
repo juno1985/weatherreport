@@ -1,7 +1,10 @@
 package com.juno.weatherreport.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ListDetails implements Serializable {
 
@@ -12,7 +15,8 @@ public class ListDetails implements Serializable {
 	private Clouds clouds;
 	private Wind wind;
 	private String visibility;
-	private String dt_txt;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date dt_txt;
 	private List<Weather> weather;
 	private String pop;
 	private Sys sys;
@@ -47,10 +51,11 @@ public class ListDetails implements Serializable {
 	public void setVisibility(String visibility) {
 		this.visibility = visibility;
 	}
-	public String getDt_txt() {
+	
+	public Date getDt_txt() {
 		return dt_txt;
 	}
-	public void setDt_txt(String dt_txt) {
+	public void setDt_txt(Date dt_txt) {
 		this.dt_txt = dt_txt;
 	}
 	public List<Weather> getWeather() {

@@ -26,10 +26,15 @@ class WeatherreportApplicationTests {
 	
 	@Test
 	public void testGetWeatherResponseByCityName() {
+		
 		ForcastWeatherResponse forcastWeatherResponse = (ForcastWeatherResponse) remoteWeatherDataService.getForcastDataByCityName("Dalian");
 	
 			
+		List<ListDetails> list = forcastWeatherResponse.getList();
 		
+		for(ListDetails ld : list) {
+			System.out.println(ld.getDt_txt().toString());
+		}
 	}
 	
 	
