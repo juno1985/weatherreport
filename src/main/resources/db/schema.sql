@@ -1,8 +1,21 @@
-DROP TABLE IF EXISTS user;
+drop table if exists City;
+drop table if exists ForcastFiveDaysData;
+
+create table City
+(id int primary key auto_increment,
+city_name varchar not null,
+city_country varchar not null,
+city_timezone varchar not null
+);
 
 
-create table user 
-(id int primary key auto_increment, 
-user_name varchar not null, 
-passWord varchar not null,
-realName varchar default null);
+create table ForcastFiveDaysData
+(id int primary key auto_increment,
+temp real,
+description varchar default null,
+feels_like real ,
+temp_min real,
+temp_max real,
+cid int,
+foreign key(cid) references CITY(id)
+);

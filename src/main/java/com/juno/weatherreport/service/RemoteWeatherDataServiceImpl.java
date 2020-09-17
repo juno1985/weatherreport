@@ -44,17 +44,15 @@ public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
 	}
 	
 	@Override
-	public ForcastWeatherResponse getForcastDataByCityName(String cityName) {
+	public WeatherResponse getForcastDataByCityName(String cityName) {
 		String uri = constructURI(cityName, FORCAST_WEATHER);
-		doGetWeather(uri, FORCAST_WEATHER);
-		return null;
+		return doGetWeather(uri, FORCAST_WEATHER);
 	}
 	
 	private WeatherResponse doGetWeather(String uri, String type) {
 		ResponseEntity<String> resStr = restTemplate.getForEntity(uri, String.class);
 		
 		WeatherResponse weatherResponse = null;
-		List<ListDetails> list = null;
 		
 		if(resStr.getStatusCodeValue() == 200) {
 			String strBody = resStr.getBody();
