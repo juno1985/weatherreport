@@ -63,6 +63,11 @@ public class City implements Serializable {
 	public void setSunset(String sunset) {
 		this.sunset = sunset;
 	}
+	@Override
+	public String toString() {
+		return "City [id=" + id + ", name=" + name + ", coord=" + coord + ", country=" + country + ", population="
+				+ population + ", timezone=" + timezone + ", sunrise=" + sunrise + ", sunset=" + sunset + "]";
+	}
 	
 	
 

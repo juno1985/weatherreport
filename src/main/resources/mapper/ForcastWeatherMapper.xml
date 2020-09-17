@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juno.weatherreport.mapper.ForcastWeatherMapper">
+
+    <resultMap id="CityModel" type="com.juno.weatherreport.model.City">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="city_name" jdbcType="VARCHAR" property="name" />
+        <result column="city_country" jdbcType="VARCHAR" property="country" />
+        <result column="city_timezone" jdbcType="VARCHAR" property="timezone" />
+    </resultMap>
+
+    <select id="getCityByCityName" resultMap="CityModel">
+        select id, city_name, city_country, city_timezone from city where city_name = #{cityName};
+    </select>
+
+</mapper>

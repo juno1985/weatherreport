@@ -11,6 +11,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.juno.weatherreport.mapper.ForcastWeatherMapper;
+import com.juno.weatherreport.model.City;
 import com.juno.weatherreport.model.ForcastWeatherResponse;
 import com.juno.weatherreport.model.ListDetails;
 import com.juno.weatherreport.service.RemoteWeatherDataService;
@@ -23,6 +25,8 @@ class WeatherreportApplicationTests {
 	@Autowired
 	private RemoteWeatherDataService remoteWeatherDataService;
 	
+	@Autowired
+	private ForcastWeatherMapper forcastWeatherMapper;
 	
 	@Test
 	public void testGetWeatherResponseByCityName() {
@@ -37,6 +41,12 @@ class WeatherreportApplicationTests {
 		}
 	}
 	
+	@Test
+	public void testGetCityByCityName() {
+		City city = forcastWeatherMapper.getCityByCityName("Dalian");
+		System.out.println(city);
+		
+	}
 	
 
 }

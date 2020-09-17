@@ -1,6 +1,5 @@
 package com.juno.weatherreport.service;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.juno.weatherreport.model.ForcastWeatherResponse;
-import com.juno.weatherreport.model.ListDetails;
 import com.juno.weatherreport.model.WeatherResponse;
 @Service
 public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
