@@ -27,7 +27,7 @@ public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
 	private static final String APP_ID = "&appid=439d4b804bc8187953eb36d2a8c26a02";
 	private static final String FORCAST_WEATHER = "forecast";
 	private static final String CURRENT_WEATHER = "weather";
-
+	private static final String FORCAST_TABLE_NAME = "FORCASTFIVEDAYSDATA";
 	@Autowired
 	private RestTemplate restTemplate;
 	
@@ -82,6 +82,7 @@ public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
 			}
 		}
 		
+		forcastWeatherMapper.truncateData(FORCAST_TABLE_NAME);
 	
 		Long result = forcastWeatherMapper.syncForcastWeatherData(forcastList);
 		

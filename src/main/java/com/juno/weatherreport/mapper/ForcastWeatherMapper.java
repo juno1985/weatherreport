@@ -18,4 +18,6 @@ public interface ForcastWeatherMapper {
 	
 	
 	Long syncForcastWeatherData(List<ForcastData> list);
+	
+	Long truncateData(@Param("tableName")String tableName);
 }

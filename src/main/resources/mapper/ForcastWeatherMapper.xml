@@ -54,5 +54,9 @@
 		 </foreach>
 	
 	</insert>
+	
+	<update id="truncateData">
+		truncate table ${tableName}
+	</update>
 
 </mapper>
