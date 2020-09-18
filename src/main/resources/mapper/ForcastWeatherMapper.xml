@@ -4,7 +4,6 @@
 	namespace="com.juno.weatherreport.mapper.ForcastWeatherMapper">
 
 	
-
 	<resultMap id="ForcastWeatherModel"
 		type="com.juno.weatherreport.model.ForcastWeatherWrapper">
 		<result column="id" jdbcType="VARCHAR" property="city.id" />
@@ -22,6 +21,7 @@
 			<result column="FEELS_LIKE" jdbcType="FLOAT" property="feels_like" />
 			<result column="TEMP_MIN" jdbcType="FLOAT" property="temp_min" />
 			<result column="TEMP_MAX" jdbcType="FLOAT" property="temp_max" />
+			<result column="DT_TXT" jdbcType="DATE" property="dt_txt" />
 		</collection>
 	</resultMap>
 
@@ -30,8 +30,7 @@
 	<select id="getForcastWeatherByCityId"
 		resultMap="ForcastWeatherModel">
 		select c.ID ,c.CITY_NAME , c.CITY_COUNTRY ,c.CITY_TIMEZONE,
-		f.TEMP
-		,f.DESCRIPTION ,f.FEELS_LIKE ,f.TEMP_MIN ,f.TEMP_MAX
+		f.TEMP,f.DESCRIPTION ,f.FEELS_LIKE ,f.TEMP_MIN ,f.TEMP_MAX, f.DT_TXT
 		from CITY c
 		left join FORCASTFIVEDAYSDATA f
 		on c.id = f.cid

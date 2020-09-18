@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.juno.weatherreport.mapper.CityMapper;
+import com.juno.weatherreport.mapper.ForcastWeatherMapper;
 import com.juno.weatherreport.model.City;
 import com.juno.weatherreport.model.ForcastWeatherWrapper;
 @Service
@@ -14,10 +15,17 @@ public class LocalWeatherDataServiceImpl implements LocalWeatherDataService {
 	
 	@Autowired
 	private CityMapper cityMapper;
+	@Autowired
+	private ForcastWeatherMapper forcastWeatherMapper;
 
 	@Override
 	public ForcastWeatherWrapper getForcastWeatherByCityName(String cityName) {
-		return null;
+		
+		City city = getCityByCityName(cityName);
+		
+		ForcastWeatherWrapper forcastWeatherWrapper = forcastWeatherMapper.getForcastWeatherByCityId(String.valueOf(city.getId()));
+		
+		return forcastWeatherWrapper;
 	}
 
 	@Override
