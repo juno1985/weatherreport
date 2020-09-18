@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.juno.weatherreport.mapper.CityMapper;
+import com.juno.weatherreport.mapper.ForcastWeatherMapper;
 import com.juno.weatherreport.model.City;
 import com.juno.weatherreport.model.ForcastData;
 import com.juno.weatherreport.model.ForcastWeatherResponse;
@@ -32,6 +33,9 @@ public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
 	
 	@Autowired
 	private LocalWeatherDataService localWeatherDataService;
+	
+	@Autowired
+	private ForcastWeatherMapper forcastWeatherMapper;
 	
 	private String constructURI(String param, String type) {
 		
@@ -78,7 +82,8 @@ public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
 			}
 		}
 		
-		System.out.println(forcastList.toString());
+	
+		Long result = forcastWeatherMapper.syncForcastWeatherData(forcastList);
 		
 		return true;
 	}

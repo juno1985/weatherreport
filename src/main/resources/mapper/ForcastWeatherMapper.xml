@@ -37,5 +37,22 @@
 		on c.id = f.cid
 		where c.ID = #{id}
 	</select>
+	
+	<insert id="syncForcastWeatherData" parameterType="com.juno.weatherreport.model.ForcastData" useGeneratedKeys="true">
+		
+		insert into FORCASTFIVEDAYSDATA (TEMP ,DESCRIPTION ,FEELS_LIKE ,TEMP_MIN ,TEMP_MAX ,DT_TXT, CID ) values
+		<foreach collection="list" item="ForcastData" separator=",">
+		 (
+		 	#{ForcastData.temp},
+		 	#{ForcastData.description},
+		 	#{ForcastData.feels_like},
+		 	#{ForcastData.temp_min},
+		 	#{ForcastData.temp_max},
+		 	#{ForcastData.dt_txt},
+		 	#{ForcastData.cid}
+		 )
+		 </foreach>
+	
+	</insert>
 
 </mapper>
