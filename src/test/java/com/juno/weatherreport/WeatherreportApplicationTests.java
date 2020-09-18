@@ -74,5 +74,10 @@ class WeatherreportApplicationTests {
 		System.out.println(localWeatherDataService.getCityByCityName("Dalian"));
 		System.out.println(localWeatherDataService.getAllCities());
 	}
+	
+	@Test
+	public void testSyncForcastWeatherData() {
+		remoteWeatherDataService.syncForcastWeatherData();
+	}
 
 }

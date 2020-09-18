@@ -5,7 +5,7 @@
 
 	<resultMap id="CityModel"
 		type="com.juno.weatherreport.model.City">
-		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="city_name" jdbcType="VARCHAR" property="name" />
 		<result column="city_country" jdbcType="VARCHAR"
 			property="country" />

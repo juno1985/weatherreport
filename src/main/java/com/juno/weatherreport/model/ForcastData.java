@@ -1,5 +1,7 @@
 package com.juno.weatherreport.model;
 
+import java.util.Date;
+
 public class ForcastData {
 	
 	private Float temp;
@@ -7,6 +9,17 @@ public class ForcastData {
 	private Float temp_min;
 	private Float temp_max;
 	private String description;
+	private Date dt_txt;
+	private Integer cid;
+	
+	public ForcastData() {
+		
+	}
+	
+	public ForcastData(Integer cid) {
+		this.cid = cid;
+	}
+
 	public Float getTemp() {
 		return temp;
 	}
@@ -37,11 +50,25 @@ public class ForcastData {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Date getDt_txt() {
+		return dt_txt;
+	}
+	public void setDt_txt(Date dt_txt) {
+		this.dt_txt = dt_txt;
+	}
+	
+	public Integer getCid() {
+		return cid;
+	}
+	public void setCid(Integer cid) {
+		this.cid = cid;
+	}
+
 	@Override
 	public String toString() {
 		return "ForcastData [temp=" + temp + ", feels_like=" + feels_like + ", temp_min=" + temp_min + ", temp_max="
-				+ temp_max + ", description=" + description + "]";
+				+ temp_max + ", description=" + description + ", dt_txt=" + dt_txt + ", cid=" + cid + "]";
 	}
-	
+
 	
 }

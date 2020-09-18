@@ -16,6 +16,7 @@ description varchar default null,
 feels_like real ,
 temp_min real,
 temp_max real,
+dt_txt timestamp,
 cid int,
 foreign key(cid) references CITY(id)
 );

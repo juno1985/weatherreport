@@ -7,7 +7,7 @@ public class City implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
+	private Integer id;
 	private String name;
 	private Coord coord;
 	private String country;
@@ -15,10 +15,10 @@ public class City implements Serializable {
 	private String timezone;
 	private String sunrise;
 	private String sunset;
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

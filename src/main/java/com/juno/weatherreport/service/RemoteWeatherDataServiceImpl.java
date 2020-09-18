@@ -1,6 +1,9 @@
 package com.juno.weatherreport.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,7 +13,11 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.juno.weatherreport.mapper.CityMapper;
+import com.juno.weatherreport.model.City;
+import com.juno.weatherreport.model.ForcastData;
 import com.juno.weatherreport.model.ForcastWeatherResponse;
+import com.juno.weatherreport.model.ListDetails;
 import com.juno.weatherreport.model.WeatherResponse;
 @Service
 public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
@@ -22,6 +29,9 @@ public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
 
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private LocalWeatherDataService localWeatherDataService;
 	
 	private String constructURI(String param, String type) {
 		
@@ -42,9 +52,35 @@ public class RemoteWeatherDataServiceImpl implements RemoteWeatherDataService {
 	}
 	
 	@Override
-	public WeatherResponse getForcastDataByCityName(String cityName) {
+	public ForcastWeatherResponse getForcastDataByCityName(String cityName) {
 		String uri = constructURI(cityName, FORCAST_WEATHER);
-		return doGetWeather(uri, FORCAST_WEATHER);
+		return (ForcastWeatherResponse)doGetWeather(uri, FORCAST_WEATHER);
+	}
+	
+	
+	public Boolean syncForcastWeatherData() {
+		
+		List<ForcastData> forcastList = new ArrayList<>();
+		
+		List<City> cityList = localWeatherDataService.getAllCities();
+		for(City city : cityList) {
+			ForcastWeatherResponse forcastWeatherResponse = getForcastDataByCityName(city.getName());
+			List<ListDetails> ldList = forcastWeatherResponse.getList();
+			for(ListDetails ld : ldList) {
+				ForcastData fd  = new ForcastData(city.getId());
+				fd.setDescription(ld.getWeather().get(0).getDescription());
+				fd.setDt_txt(ld.getDt_txt());
+				fd.setFeels_like(ld.getMain().getFeels_like());
+				fd.setTemp(ld.getMain().getTemp());
+				fd.setTemp_max(ld.getMain().getTemp_max());
+				fd.setTemp_min(ld.getMain().getTemp_min());
+				forcastList.add(fd);
+			}
+		}
+		
+		System.out.println(forcastList.toString());
+		
+		return true;
 	}
 	
 	private WeatherResponse doGetWeather(String uri, String type) {
