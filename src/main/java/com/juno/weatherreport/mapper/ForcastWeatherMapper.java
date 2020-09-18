@@ -1,5 +1,7 @@
 package com.juno.weatherreport.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -10,7 +12,6 @@ import com.juno.weatherreport.model.ForcastWeatherWrapper;
 @Component
 public interface ForcastWeatherMapper {
 
-	City getCityByCityName(@Param("cityName")String cityName);
 	
 	ForcastWeatherWrapper getForcastWeatherByCityId(@Param("id")String id);
 }
