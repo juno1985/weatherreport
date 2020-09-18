@@ -21,7 +21,7 @@
 			<result column="FEELS_LIKE" jdbcType="FLOAT" property="feels_like" />
 			<result column="TEMP_MIN" jdbcType="FLOAT" property="temp_min" />
 			<result column="TEMP_MAX" jdbcType="FLOAT" property="temp_max" />
-			<result column="DT_TXT" jdbcType="DATE" property="dt_txt" />
+			<result column="DT_TXT" jdbcType="TIMESTAMP" property="dt_txt" />
 		</collection>
 	</resultMap>
 
