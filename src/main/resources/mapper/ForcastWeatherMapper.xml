@@ -29,13 +29,25 @@
 
 	<select id="getForcastWeatherByCityId"
 		resultMap="ForcastWeatherModel">
+		<!-- select c.ID ,c.CITY_NAME , c.CITY_COUNTRY ,c.CITY_TIMEZONE,
+		f.TEMP,f.DESCRIPTION ,f.FEELS_LIKE ,f.TEMP_MIN ,f.TEMP_MAX, f.DT_TXT
+		from CITY c
+		left join FORCASTFIVEDAYSDATA f
+		on c.id = f.cid
+		where c.ID = #{id} -->
+		
 		select c.ID ,c.CITY_NAME , c.CITY_COUNTRY ,c.CITY_TIMEZONE,
 		f.TEMP,f.DESCRIPTION ,f.FEELS_LIKE ,f.TEMP_MIN ,f.TEMP_MAX, f.DT_TXT
 		from CITY c
 		left join FORCASTFIVEDAYSDATA f
 		on c.id = f.cid
-		where c.ID = #{id}
+		where c.ID =  #{id}
+		<if test="latestDay != null">
+	    and f.dt_txt  &lt;= now() +  interval ${latestDay} day
+	    </if>
+	    order by f.dt_txt asc
 	</select>
+	
 	
 	<insert id="syncForcastWeatherData" parameterType="com.juno.weatherreport.model.ForcastData" useGeneratedKeys="true">
 		

@@ -13,15 +13,18 @@ import com.juno.weatherreport.service.LocalWeatherDataService;
 @RestController
 @RequestMapping("/weather")
 public class WeatherController {
+	
+	private static final Integer latestDays = 3;
 
 	@Autowired
 	private LocalWeatherDataService localWeatherDataService;
 	
 	@GetMapping("/cityName/{cityName}")
 	public ForcastWeatherWrapper getForcastWeatherByCityName(@PathVariable("cityName") String cityName) {
-		ForcastWeatherWrapper forcastWeatherWrapper = localWeatherDataService.getForcastWeatherByCityName(cityName);
-		return forcastWeatherWrapper;
+		return localWeatherDataService.getForcastWeatherByCityName(cityName);
 	}
-	
-	
+	@GetMapping("/cityName/{cityName}/3days")
+	public ForcastWeatherWrapper getLatestDaysForcastWeatherByCityName(@PathVariable("cityName") String cityName) {
+		return localWeatherDataService.getLatestDaysForcastWeatherByCityName(cityName, latestDays);
+	}
 }

@@ -9,6 +9,8 @@ public interface LocalWeatherDataService {
 	
 	ForcastWeatherWrapper getForcastWeatherByCityName(String cityName);
 	
+	ForcastWeatherWrapper getLatestDaysForcastWeatherByCityName(String cityName, Integer latestDays);
+	
 	City getCityByCityName(String cityName);
 	
 	List<City> getAllCities();

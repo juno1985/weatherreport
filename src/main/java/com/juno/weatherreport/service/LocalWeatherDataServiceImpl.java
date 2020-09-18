@@ -21,12 +21,19 @@ public class LocalWeatherDataServiceImpl implements LocalWeatherDataService {
 	@Override
 	public ForcastWeatherWrapper getForcastWeatherByCityName(String cityName) {
 		
+		return getLatestDaysForcastWeatherByCityName(cityName, null);
+	}
+	
+	@Override
+	public ForcastWeatherWrapper getLatestDaysForcastWeatherByCityName(String cityName, Integer latestDays) {
+		
 		City city = getCityByCityName(cityName);
 		
-		ForcastWeatherWrapper forcastWeatherWrapper = forcastWeatherMapper.getForcastWeatherByCityId(String.valueOf(city.getId()));
+		ForcastWeatherWrapper forcastWeatherWrapper = forcastWeatherMapper.getForcastWeatherByCityId(String.valueOf(city.getId()), latestDays);
 		
 		return forcastWeatherWrapper;
 	}
+	
 
 	@Override
 	public City getCityByCityName(String cityName) {
@@ -41,5 +48,9 @@ public class LocalWeatherDataServiceImpl implements LocalWeatherDataService {
 		if(!list.isEmpty()) return list;
 		return null;
 	}
+
+
+
+	
 
 }
