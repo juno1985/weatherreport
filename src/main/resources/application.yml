@@ -1,5 +1,6 @@
 server:
   port: 8080
+  
 #************H2  Begin****************
 spring:
   datasource:
@@ -9,6 +10,8 @@ spring:
     password:
     schema: classpath:db/schema.sql
     data: classpath:db/data.sql
+  thymeleaf:
+    cache: false
   h2:
     console:
       settings:

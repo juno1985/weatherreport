@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/report.js}"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h3 th:text="${reportModel.cityName}"></h3>
+		</div>
+
+		<div class="row">
+			<select id="selectCityId">
+				<option th:each="city : ${cityList}" th:text="${city.name}"
+					th:value="${city.name}"
+					th:selected="${city.name eq reportModel.cityName}"></option>
+			</select>
+		</div>
+		<div class="row">
+			<div class="card border-info col-md-2 bg-dark text-white"
+				th:each="forcast : ${reportModel.forcastWrapper.list}">
+				<div class="card-block text-info">
+					<p th:text="${forcast.dt_txt}">
+					<p th:text="${forcast.temp}">
+					<p th:text="${forcast.feels_like}">
+					<p th:text="${forcast.temp_min}">
+					<p th:text="${forcast.temp_max}">
+					<p th:text="${forcast.description}">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
